@@ -9,6 +9,10 @@ class AsyncHandlerUtil {
 
     fun isDispatchToResume(request: HttpServletRequest): Boolean {
         val manager = WebAsyncUtils.getAsyncManager(request)
+
+        // WebAsyncManager.hasConcurrentResult()を利用すれば、
+        // 非同期処理（Controllerのsuspend fun）の完了後に再度ディスパッチされたのかどうかを判定できる。
+        // see: https://spring.pleiades.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/request/async/WebAsyncManager.html
         return manager.hasConcurrentResult()
    }
 }
