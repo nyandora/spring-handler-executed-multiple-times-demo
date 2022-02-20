@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest
 @Component
 class AsyncHandlerUtil {
 
-    fun isDispatchToResume(request: HttpServletRequest): Boolean {
+    fun isDispatchedToResume(request: HttpServletRequest): Boolean {
         val manager = WebAsyncUtils.getAsyncManager(request)
 
         // WebAsyncManager.hasConcurrentResult()を利用すれば、
