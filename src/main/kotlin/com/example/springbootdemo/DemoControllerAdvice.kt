@@ -30,7 +30,7 @@ class DemoControllerAdvice() {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     fun handleException(e: Throwable): String {
         // ハンドラ（Controllerのsupend fun）で例外がスローされた場合、
-        // ２回目のディスパッチはここにくる。
+        // ２回目のディスパッチでここにくる。
         return "error occurred."
     }
 }
