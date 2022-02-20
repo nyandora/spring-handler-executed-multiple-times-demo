@@ -14,7 +14,7 @@ class DemoHandlerInterceptor(
         // 後続処理を再開するためにDispatcherServletに再度ディスパッチされる。
         // その時にInterceptorが呼ばれた場合（つまり２回目に呼ばれた場合）は何もしない。
         if (asyncHandlerUtil.isDispatchedToResume(request)) {
-            // falseを返してしまうと後続処理の再開まで止まってしまうので、trueを返す必要あり。
+            // falseを返してしまうと後続処理の再開も止まってしまうので、trueを返す必要あり。
             return true
         }
 
