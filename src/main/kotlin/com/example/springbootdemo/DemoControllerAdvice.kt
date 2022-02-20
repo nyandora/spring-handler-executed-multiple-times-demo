@@ -1,10 +1,10 @@
 package com.example.springbootdemo
 
-import org.springframework.web.bind.annotation.ControllerAdvice
-import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletRequest
 
-@ControllerAdvice
+@RestControllerAdvice
 class DemoControllerAdvice() {
     @ModelAttribute("myModel")
     fun addSomeAttributeToModel(request: HttpServletRequest): String? {
@@ -26,5 +26,11 @@ class DemoControllerAdvice() {
         return attributeValue
     }
 
-    // TODO: ExceptionHandlerの場合にどうなるか要確認。
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    fun handleException(e: Throwable): String {
+        // ハンドラ（Controllerのsupend fun）で例外がスローされた場合、
+        // ２回目のディスパッチはここにくる。
+        return "error occurred."
+    }
 }
